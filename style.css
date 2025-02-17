@@ -1,0 +1,28 @@
+html {
+    background-color: #5787ff;
+}
+
+body {
+    background-color: #abc3ff;
+    color: #00134c;
+    filter: drop-shadow(0px 0px 7px rgba(0, 0, 0, 0.7)) drop-shadow(0px 1px 5px rgba(227, 150, 6, 0.4));
+    padding: 1rem 1.5rem;
+    margin: 2rem;
+}
+
+a {
+    color: #0732b1;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #00134c;
+}
+
+
+@media (any-hover: hover) {
+    .a:hover {
+        color: #5787ff;
+        background: #00134c;
+    }
+}
