@@ -10,6 +10,31 @@ body {
     margin: 2rem;
 }
 
+.header__pagelist {
+    width: 100%;
+}
+
+.header__pagelist__current {
+    font-size: 1.5rem;
+}
+
+ul {
+    padding: 0;
+    display: flex;
+    list-style: none;
+}
+
+li {
+    padding: 0.5rem;
+    margin: 0 0.5rem;
+    text-align: center;
+    width: calc(100% / 3);
+    box-sizing: border-box;
+    background-color: #5787ff70;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px #00134c;
+}
+
 a {
     color: #0732b1;
     text-decoration: none;
@@ -19,10 +44,23 @@ a:hover {
     color: #00134c;
 }
 
+table {
+    width: 50%;
+    border-spacing: 0;
+}
 
-@media (any-hover: hover) {
-    .a:hover {
-        color: #5787ff;
-        background: #00134c;
-    }
+
+td {
+    text-align: center;
+    width: auto;
+    border-top: 2px dashed #00134c;
+    padding: 0.5rem;
+}
+
+@media (max-width: 960px) {
+    
+}
+
+@media (max-width: 428px) {
+    
 }
