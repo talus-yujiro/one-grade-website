@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>課題(A) | R6年度1学年総合ウェブサイト</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <h1>R6年度1学年総合ウェブサイト</h1>
+        <article class="header__pagelist">
+            <ul>
+                <li><a href="memberlist.html"><i class="fa-solid fa-list"></i>名簿</a></li>
+                <li><a href="test.html">テスト予定</a></li>
+                <li><a href="task-a.html">課題(A)</a></li>
+                <li><a href="task-b.html">課題(B)</a></li>
+                <li><a href="bbs.html">掲示板</a></li>
+            </ul>
+            <p>
+                <a href="index.html">トップページ</a>/
+                <a href="memberlist.html" class="header__pagelist__current">課題(A)</a>
+            </p>
+        </article>
+    </header>
+
+    <main>
+        <article>
+            <h2>課題を追加</h2>
+            <form id="taskForm">
+                <input type="text" id="title" placeholder="課題名" required>
+                <input type="date" id="deadline" required>
+                <input type="text" id="notes" placeholder="備考">
+                <button type="submit">追加</button>
+            </form>
+        </article>
+
+        <article>
+            <h2>課題一覧</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>課題名</th>
+                        <th>期限</th>
+                        <th>備考</th>
+                    </tr>
+                </thead>
+                <tbody id="taskTable"></tbody>
+            </table>
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; talus (2025)</p>
+        <p>※このサイトは学校非公認の個人が運営しているサイトです。学校側の問題に責任は取れませんのでご注意ください。</p>
+        <a href="https://www.mito1-jh.ibk.ed.jp" target="_blank">茨城県立水戸第一高等学校附属中学校HP</a>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.35.4"></script>
+    <script type="module" src="task-a.js"></script>
+</body>
+
+</html>

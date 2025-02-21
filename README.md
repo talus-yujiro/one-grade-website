@@ -2,12 +2,14 @@
 
 ## 配色
 ### ベースカラー
-#5787ff
-#abc3ff
+<span style="background: #5787ff;">　　　</span> #5787ff
+
+<span style="background: #abc3ff;">　　　</span> #abc3ff
 
 ### メインカラー
-#00134c
-#0732b1
+<span style="background: #00134c;">　　　</span> #00134c
+
+<span style="background: #0732b1;">　　　</span> #0732b1
 
 ### アクセントカラー
-#b64300
+<span style="background: #b64300;">　　　</span> #b64300
