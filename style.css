@@ -37,18 +37,24 @@ h1 a {
     text-align: center;
     width: calc(100% / 5);
     box-sizing: border-box;
-    background-color: #5787ff70;
+    background-color: #739afc;
     border-radius: 5px;
     box-shadow: 1px 1px 3px #00134c;
-}
-
-.header__pagelist a:hover, i:hover {
-    color: #5787ff;
-    background-color: #0732b1;
+    transition: color 0.5s ease, background-color 0.5s ease;
 }
 
 .header__pagelist i {
     color: #0732b1;
+    transition: color 0.5s ease;
+}
+
+.header__pagelist a:hover {
+    color: #739afc;
+    background-color: #0732b1;
+}
+
+.header__pagelist a:hover i {
+    color: #739afc;
 }
 
 i {
@@ -58,6 +64,7 @@ i {
 a {
     color: #0732b1;
     text-decoration: none;
+    transition: color 0.5s ease;
 }
 
 a:hover {

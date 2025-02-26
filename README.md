@@ -13,3 +13,6 @@
 
 ### アクセントカラー
 <span style="background: #b64300;">　　　</span> #b64300
+
+### ボタン
+<span style="background: #739afc;">　　　</span> #739afc
