@@ -79,22 +79,27 @@ a[href^="//"]:after {
 }
 
 table {
-    width: 50%;
+    box-sizing: border-box;
     border-spacing: 2px;
 }
 
 
 th, td {
     text-align: center;
-    width: auto;
+    width: fit-content;
     border-top: 2px dashed #00134c;
-    padding: 0.5rem;
+    padding: 0.5rem 1rem;
 }
 
 th {
     border: 2px dashed #00134c;
+    border-bottom: none;
 }
 
-@media (max-width: 960px) {}
+@media (max-width: 960px) {
+    header, main, footer {
+        padding: 1rem, 0.5rem;
+    }
+}
 
 @media (max-width: 428px) {}
