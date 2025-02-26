@@ -31,7 +31,7 @@ h1 a {
     list-style: none;
 }
 
-.header__pagelist li {
+.header__pagelist a {
     padding: 0.5rem;
     margin: 0 0.5rem;
     text-align: center;
@@ -40,6 +40,19 @@ h1 a {
     background-color: #5787ff70;
     border-radius: 5px;
     box-shadow: 1px 1px 3px #00134c;
+}
+
+.header__pagelist a:hover, i:hover {
+    color: #5787ff;
+    background-color: #0732b1;
+}
+
+.header__pagelist i {
+    color: #0732b1;
+}
+
+i {
+    margin-right: 0.5rem;
 }
 
 a {
