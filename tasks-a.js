@@ -15,7 +15,7 @@ document.getElementById("taskForm").addEventListener("submit", async (e) => {
     const deadline = document.getElementById("deadline").value;
     const notes = document.getElementById("notes").value;
 
-    const { error } = await supabase.from("tasks").insert([{ title, deadline, notes }]);
+    const { error } = await supabase.from("tasks-a").insert([{ title, deadline, notes }]);
 
     if (error) {
         console.error("データ送信エラー:", error);
@@ -29,8 +29,8 @@ document.getElementById("taskForm").addEventListener("submit", async (e) => {
 // Supabase からデータを取得して表に表示
 async function loadTasks() {
     const { data, error } = await supabase
-        .from("tasks")
-        .select("*")
+        .from("tasks-a")
+        .select("*, id")
         .order("deadline", { ascending: true });
 
     if (error) {
@@ -40,14 +40,27 @@ async function loadTasks() {
 
     const tableBody = document.getElementById("taskTable");
     tableBody.innerHTML = "";
-    data.forEach((task) => {
-        const row = `<tr>
-            <td>${task.title}</td>
-            <td>${task.deadline}</td>
-            <td>${task.notes}</td>
-        </tr>`;
-        tableBody.innerHTML += row;
-    });
+    const now = new Date();
+    
+    for (const task of data) {
+        const deadlineDate = new Date(task.deadline);
+        const row = document.createElement("tr");
+        row.innerHTML = `<td>${task.title}</td>
+                         <td>${task.deadline}</td>
+                         <td>${task.notes}</td>`;
+        
+        // 期限切れのタスクは赤くする
+        if (deadlineDate < now) {
+            row.style.color = "red";
+        }
+        
+        tableBody.appendChild(row);
+
+        // 期限が1週間以上過ぎたタスクを削除
+        if ((now - deadlineDate) / (1000 * 60 * 60 * 24) > 7) {
+            await supabase.from("tasks-a").delete().eq("id", task.id);
+        }
+    }
 }
 
 loadTasks();
