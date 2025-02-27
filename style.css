@@ -195,9 +195,12 @@ button:active {
         padding: 1rem;
     }
 
+    table {
+        overflow: scroll;
+    }
+
     th,
     td {
-        white-space: normal;
         padding: 0.3rem 0.5rem;
     }
 
