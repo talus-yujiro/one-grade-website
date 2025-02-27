@@ -24,8 +24,8 @@
                 <li><a href="bbs.html"><i class="fa-solid fa-chalkboard"></i> 掲示板</a></li>
             </ul>
         </nav>
-        <p>
-            <a href="index.html"><i class="fa-solid fa-house"></i>トップページ</a>/
+        <p class="header__breadcrumb">
+            <a href="index.html"><i class="fa-solid fa-house"></i>トップページ</a>
             <a href="memberlist.html" ><i class="fa-solid fa-list-check"></i>課題(A)</a>
         </p>
     </header>
@@ -47,10 +47,10 @@
         <article>
             <h2>課題を追加</h2>
             <form id="taskForm">
-                <input type="text" id="title" placeholder="課題名" required>
-                <input type="date" id="deadline" required>
-                <input type="text" id="notes" placeholder="備考">
-                <br>
+                <input type="text" id="title" placeholder="課題名" required><br>
+                <input type="date" id="deadline" required><br>
+                <input type="text" id="description" placeholder="課題内容" required><br>
+                <input type="text" id="notes" placeholder="備考"><br>
                 <button type="submit">追加</button>
             </form>
         </article>
@@ -62,6 +62,7 @@
                     <tr>
                         <th>課題名</th>
                         <th>期限</th>
+                        <th>課題内容</th>
                         <th>備考</th>
                     </tr>
                 </thead>

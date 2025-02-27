@@ -65,13 +65,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // ページのタイトルとパンくずリストの更新
     if (thread) {
+        document.title = `${thread} - 掲示板 | R6年度1学年総合ウェブサイト`
         listTitle.textContent = `スレッド: ${thread}`;
-        headerBreadcrumb.innerHTML = `<a href="index.html"><i class="fa-solid fa-house"></i>トップページ</a>/
-            <a href="bbs.html"><i class="fa-solid fa-chalkboard"></i>掲示板</a> / 
+        headerBreadcrumb.innerHTML = `<a href="index.html"><i class="fa-solid fa-house"></i>トップページ</a>
+            <a href="bbs.html"><i class="fa-solid fa-chalkboard"></i>掲示板</a>
             <a href="bbs.html?thread=${thread}">${thread}`;
     } else {
+        document.title = "掲示板 | R6年度1学年総合ウェブサイト"
         listTitle.textContent = "最新の投稿";
-        headerBreadcrumb.innerHTML = `<a href="index.html"><i class="fa-solid fa-house"></i>トップページ</a>/
+        headerBreadcrumb.innerHTML = `<a href="index.html"><i class="fa-solid fa-house"></i>トップページ</a>
             <a href="bbs.html"><i class="fa-solid fa-chalkboard"></i>掲示板</a>`;
     }
 });

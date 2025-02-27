@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>R6年度1学年総合ウェブサイト</title>
+    <title>新規投稿 - 掲示板 | R6年度1学年総合ウェブサイト</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.2/css/all.css">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
@@ -24,8 +24,9 @@
                 <li><a href="bbs.html"><i class="fa-solid fa-chalkboard"></i> 掲示板</a></li>
             </ul>
         </nav>
-        <p>
-            <a href="index.html"><i class="fa-solid fa-house"></i>トップページ</a>/ <a href="bbs.html"><i class="fa-solid fa-chalkboard"></i>掲示板</a>/ 
+        <p class="header__breadcrumb">
+            <a href="index.html"><i class="fa-solid fa-house"></i>トップページ</a>
+            <a href="bbs.html"><i class="fa-solid fa-chalkboard"></i>掲示板</a>
             <a href="new_post.html" ><i class="fa-solid fa-pen-to-square"></i>新規投稿</a>
         </p>
     </header>
@@ -44,9 +45,9 @@
                 <option value="">スレッドを選択</option>
             </select>
         </label><br>
-        <label>名前: <input type="text" id="username" required></label><br>
-        <label>タイトル: <input type="text" id="title" required></label><br>
-        <label>本文: <textarea id="content" required></textarea></label><br>
+        <input type="text" id="username" placeholder="名前" required><br>
+        <input type="text" id="title" placeholder="タイトル" required><br>
+        <textarea id="content" placeholder="本文" required></textarea><br>
         <button type="submit">投稿</button>
     </form>
     </main>

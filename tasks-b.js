@@ -1,7 +1,7 @@
-// Supabase ライブラリから `createClient` をインポート
+// Supabase ライブラリをインポート
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
-// Supabase の設定
+// Supabase 設定
 const supabaseUrl = "https://mgsbwkidyxmicbacqeeh.supabase.co";
 const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1nc2J3a2lkeXhtaWNiYWNxZWVoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk5NDA0MjIsImV4cCI6MjA1NTUxNjQyMn0.fNkFQykD9ezBirtJM_fOB7XEIlGU1ZFoejCgrYObElg";
 
@@ -13,9 +13,10 @@ document.getElementById("taskForm").addEventListener("submit", async (e) => {
     
     const title = document.getElementById("title").value;
     const deadline = document.getElementById("deadline").value;
+    const description = document.getElementById("description").value;
     const notes = document.getElementById("notes").value;
 
-    const { error } = await supabase.from("tasks-b").insert([{ title, deadline, notes }]);
+    const { error } = await supabase.from("tasks-b").insert([{ title, deadline, description, notes }]);
 
     if (error) {
         console.error("データ送信エラー:", error);
@@ -47,6 +48,7 @@ async function loadTasks() {
         const row = document.createElement("tr");
         row.innerHTML = `<td>${task.title}</td>
                          <td>${task.deadline}</td>
+                         <td>${task.description}</td>
                          <td>${task.notes}</td>`;
         
         // 期限切れのタスクは赤くする
