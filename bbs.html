@@ -32,20 +32,24 @@
 
     <main>
         <h1>掲示板</h1>
-        <p>
-            新しくスレを立てたい場合は
-            <a href="https://mail.google.com/mail/?view=cm&to=yamamoto.yuujirou@mito1-h.ibk.ed.jp&su=スレ立てについて" target="_blank" rel="noopener noreferrer">yamamoto.yuujirou@mito1-h.ibk.ed.jp</a>
-            まで
-        </p>
-        <p>新規投稿は<a href="new_post.html">ココ</a>へ</p>
+        <section>
+            <p>
+                新しくスレを立てたい場合は
+                <a href="https://mail.google.com/mail/?view=cm&to=yamamoto.yuujirou@mito1-h.ibk.ed.jp&su=スレ立てについて" target="_blank" rel="noopener noreferrer">yamamoto.yuujirou@mito1-h.ibk.ed.jp</a>
+                まで
+            </p>
+            <p>新規投稿は<a href="new_post.html">ココ</a>へ</p>
+        </section>
 
-        <h2>スレッド一覧</h2>
-        <select id="threadDropdown">
-            <option value="">スレッドを選択</option>
-        </select>                  
-
-        <h2 id="listTitle">最新の投稿</h2>
-        <div id="postList"></div>
+        <section>
+            <h2>スレッドで絞り込み</h2>
+            <select id="threadDropdown">
+                <option value="all">一覧</option>
+            </select>                  
+    
+            <h2 id="listTitle">最新の投稿</h2>
+            <div id="postList"></div>
+        </section>
     </main>
 
     <footer>

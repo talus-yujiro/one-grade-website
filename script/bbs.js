@@ -35,7 +35,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     // スレッド選択時にページ遷移
     threadDropdown.addEventListener("change", (event) => {
         const selectedThread = event.target.value;
-        if (selectedThread) {
+        if (selectedThread === "all") {
+            window.location.href = "bbs.html";
+        } else {
             window.location.href = `bbs.html?thread=${encodeURIComponent(selectedThread)}`;
         }
     });

@@ -40,6 +40,7 @@ nav ul {
 nav li {
     flex-grow: 1;
     width: calc(100% / 5);
+    margin: 0.5rem;
 }
 
 nav a {
@@ -94,6 +95,15 @@ a[href^="//"]:after {
     margin-left: 3px;
     font: var(--fa-font-solid);
     content: '\f08e';
+}
+
+.tableContainer {
+    width: 100%;
+    overflow: auto;
+}
+
+.tableContainer th, .tableContainer td {
+    min-width: 10rem;
 }
 
 table {
@@ -166,28 +176,19 @@ button:active {
     header,
     main,
     footer {
-        padding: 1rem 0.5rem;
         margin: 1rem auto;
     }
 }
 
 /* スマホ対応 */
 @media (max-width: 428px) {
-
-    header,
-    main,
-    footer {
-        padding: 1rem;
-    }
-
     nav ul {
-        flex-direction: row;
         flex-wrap: wrap;
         gap: 0.3rem;
     }
 
     nav li {
-        width: fit-content;
+        width: calc(50% - 3rem);
     }
 
     nav a {
@@ -196,7 +197,7 @@ button:active {
     }
 
     table {
-        overflow: scroll;
+        overflow: auto;
     }
 
     th,
