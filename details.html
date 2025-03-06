@@ -43,27 +43,27 @@
 				<li>
 					<a href="memberlist.html">
 						<i class="fa-solid fa-clipboard-list"></i>名簿
-                    </a>
+					</a>
 				</li>
 				<li>
 					<a href="test.html">
 						<i class="fa-solid fa-calendar-days"></i>テスト予定
-                    </a>
+					</a>
 				</li>
 				<li>
 					<a href="tasks-a.html">
 						<i class="fa-solid fa-list-check"></i>課題(A)
-                    </a>
+					</a>
 				</li>
 				<li>
 					<a href="tasks-b.html">
 						<i class="fa-solid fa-list-check"></i>課題(B)
-                    </a>
+					</a>
 				</li>
 				<li>
 					<a href="bbs.html">
 						<i class="fa-solid fa-chalkboard"></i>掲示板
-                    </a>
+					</a>
 				</li>
 				<li>
 					<a href="classroomNotify.html">
@@ -180,9 +180,23 @@
 				console.error('Error posting answer:', error);
 			} else {
 				alert('回答が投稿されました');
+				markAsAnswered(questionId)
 				fetchAnswers();
+				document.getElementById('answer-content').value = '';
+				document.getElementById('answer-username').value = '';
 			}
 		});
+
+		async function markAsAnswered(questionId) {
+			const { error } = await pd
+				.from('questions')
+				.update({answered: true})
+				.eq('id', questionId);
+
+			if (error) {
+				console.error("回答済みフラグ更新エラー:", error);
+			}
+		}
 
 		fetchQuestion();
 	</script>

@@ -39,44 +39,44 @@
     <header>
         <h1><a href="index.html">R6年度1学年総合ウェブサイト</a></h1>
         <nav>
-			<ul>
-				<li>
-					<a href="memberlist.html">
-						<i class="fa-solid fa-clipboard-list"></i>名簿
+            <ul>
+                <li>
+                    <a href="memberlist.html">
+                        <i class="fa-solid fa-clipboard-list"></i>名簿
                     </a>
-				</li>
-				<li>
-					<a href="test.html">
-						<i class="fa-solid fa-calendar-days"></i>テスト予定
+                </li>
+                <li>
+                    <a href="test.html">
+                        <i class="fa-solid fa-calendar-days"></i>テスト予定
                     </a>
-				</li>
-				<li>
-					<a href="tasks-a.html">
-						<i class="fa-solid fa-list-check"></i>課題(A)
+                </li>
+                <li>
+                    <a href="tasks-a.html">
+                        <i class="fa-solid fa-list-check"></i>課題(A)
                     </a>
-				</li>
-				<li>
-					<a href="tasks-b.html">
-						<i class="fa-solid fa-list-check"></i>課題(B)
+                </li>
+                <li>
+                    <a href="tasks-b.html">
+                        <i class="fa-solid fa-list-check"></i>課題(B)
                     </a>
-				</li>
-				<li>
-					<a href="bbs.html">
-						<i class="fa-solid fa-chalkboard"></i>掲示板
+                </li>
+                <li>
+                    <a href="bbs.html">
+                        <i class="fa-solid fa-chalkboard"></i>掲示板
                     </a>
-				</li>
-				<li>
-					<a href="classroomNotify.html">
-						<i class="fa-solid fa-circle-info"></i>お知らせ
-					</a>
-				</li>
-				<li>
-					<a href="question.html">
-						<i class="fa-solid fa-circle-question"></i>質問箱
-					</a>
-				</li>
-			</ul>
-		</nav>
+                </li>
+                <li>
+                    <a href="classroomNotify.html">
+                        <i class="fa-solid fa-circle-info"></i>お知らせ
+                    </a>
+                </li>
+                <li>
+                    <a href="question.html">
+                        <i class="fa-solid fa-circle-question"></i>質問箱
+                    </a>
+                </li>
+            </ul>
+        </nav>
         <p class="header__breadcrumb">
             <a href="index.html"><i class="fa-solid fa-house"></i>トップページ</a>
             <a href="question.html"><i class="fa-solid fa-list-check"></i>質問箱</a>
@@ -84,9 +84,15 @@
     </header>
 
     <main>
-        <h1>質問一覧</h1>
+        <h1>質問箱</h1>
+        <p>自分が勉強などのことで困っていることを他の人に質問できます。</p>
+        <p>※プライベートな質問は個人でしてください。</p>
         <a href="new_question.html">新しい質問を投稿する</a>
-        <ul id="question-list"></ul>
+        <h2>未回答の質問</h2>
+        <ul id="unanswered-list"></ul>
+
+        <h2>回答済みの質問</h2>
+        <ul id="answered-list"></ul>
     </main>
 
     <footer>
@@ -109,15 +115,23 @@
                 return;
             }
 
-            const questionList = document.getElementById('question-list');
-            questions.forEach(question => {
-                const li = document.createElement('li');
-                const link = document.createElement('a');
-                link.href = `details.html?id=${question.id}`;
-                link.textContent = question.title;
-                const postDate = new Date(question.created_at).toLocaleString();
-                li.innerHTML = `${link.outerHTML} <small>${postDate}</small>`;
-                questionList.appendChild(li);
+            const unansweredList = document.getElementById("unanswered-list");
+            const answeredList = document.getElementById("answered-list");
+
+            unansweredList.innerHTML = "";
+            answeredList.innerHTML = "";
+
+            questions.forEach(q => {
+                const li = document.createElement("li");
+                const answerDate = new Date(q.created_at).toLocaleString();
+                li.innerHTML = `<a href="details.html?id=${q.id}">${q.title}</a>
+                <small>${answerDate}</small>`;
+
+                if (q.answered) {
+                    answeredList.appendChild(li);
+                } else {
+                    unansweredList.appendChild(li);
+                }
             });
         }
 
