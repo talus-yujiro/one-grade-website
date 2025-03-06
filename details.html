@@ -87,6 +87,7 @@
 
 	<main>
 		<h1 id="question-title"></h1>
+		<p id="username"></p>
 		<p id="question-content"></p>
 		<small id="question-posted-at"></small> <!-- 質問の投稿日時表示 -->
 		<h2>回答</h2>
@@ -128,6 +129,7 @@
 			}
 
 			document.getElementById('question-title').textContent = question.title;
+			document.getElementById('username').textContent = '質問者:' + question.username;
 			document.getElementById('question-content').textContent = question.content;
 
 			// 質問の投稿日時を表示
@@ -161,7 +163,7 @@
 				const answerDate = new Date(answer.created_at).toLocaleString();
 				li.innerHTML = `
           ${answer.content} - by ${answer.username} 
-          <small>${answerDate}</small>`;
+          <small>(${answerDate})</small>`;
 				answerList.appendChild(li);
 			});
 		}

@@ -125,7 +125,7 @@
                 const li = document.createElement("li");
                 const answerDate = new Date(q.created_at).toLocaleString();
                 li.innerHTML = `<a href="details.html?id=${q.id}">${q.title}</a>
-                <small>${answerDate}</small>`;
+                <small>- ${q.username} (${answerDate})</small>`;
 
                 if (q.answered) {
                     answeredList.appendChild(li);
