@@ -5,7 +5,7 @@
 	<!--文字コード・互換モード-->
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge, chrome=1">
-	<title>トップぺージ | R6年度1学年総合ウェブサイト</title>
+	<title>新しい質問を投稿 - 質問箱 | R6年度1学年総合ウェブサイト</title>
 	<!--ビューポート-->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!--css-->
@@ -31,13 +31,13 @@
 	<!--Android-->
 	<meta name="theme-color" content="#5787ff">
 	<link rel="icon" type="image/png" href="mitoichi-fuzoku-192x192.png" sizes="192x192">
+	<!--CDN-->
+	<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 </head>
 
 <body>
 	<header>
-		<h1>
-			<a href="index.html">R6年度1学年総合ウェブサイト</a>
-		</h1>
+		<h1><a href="index.html">R6年度1学年総合ウェブサイト</a></h1>
 		<nav>
 			<ul>
 				<li>
@@ -77,52 +77,59 @@
 				</li>
 			</ul>
 		</nav>
+		<p class="header__breadcrumb">
+			<a href="index.html"><i class="fa-solid fa-house"></i>トップページ</a>
+			<a href="question.html"><i class="fa-solid fa-list-check"></i>質問箱</a>
+			<a href="new-question.html"><i class="fa-solid fa-pen-to-square"></i>新しい質問を投稿</a>
+		</p>
 	</header>
+
 	<main>
-		<section>
-			<h2>サイト概要</h2>
-			<p>水戸一高附属中生四期生に向けた総合ウェブサイトです。主にテストの予定などについて掲載しています。</p>
-			<p>更に使いやすいサイトになれるよう、頑張っていきますので、今後ともよろしくお願いします。</p>
-		</section>
-		<section>
-			<h2>新しいお知らせ</h2>
-			<p class="new">2025-03-06 質問箱開設</p>
-	 		<p class="new">2025-03-05 クラスルームの新着お知らせ一覧</p>
-			<p>2025-02-28 スマホ対応</p>
-			<p>2025-02-27 掲示板サービス開始</p>
-		</section>
-		<section class="main__classlist">
-			<h2>時間割</h2>
-			<iframe src="https://docs.google.com/spreadsheets/d/128mFFj6w1drdDzxsKsoc9Xdba2FEWSffcM2iUSrnZ0c/htmlview" title="時間割">
-			</iframe>
-		</section>
-		<section>
-			<h2>更新内容と追加予定</h2>
-			<ul>
-				<li>
-					<a href="update.html">更新内容</a>
-				</li>
-				<li>
-					<a href="added-schedule.html">追加予定</a>
-				</li>
-			</ul>
-		</section>
-		<section>
-			<h2>お問い合わせ</h2>
-			<p>「ここデザイン崩れてる！」や「こんな機能追加してほしい！」など要望があれば
-				<a href="https://mail.google.com/mail/?view=cm&to=yamamoto.yuujirou@mito1-h.ibk.ed.jp&su=%E3%82%A6%E3%82%A7%E3%83%96%E3%82%B5%E3%82%A4%E3%83%88%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6" target="_blank" rel="noopener noreferrer">yamamoto.yuujirou@mito1-h.ibk.ed.jp</a>まで</p>
-			<p>現在検討中の新機能については
-				<a href="added-schedule.html">追加予定</a>に記載していますので、そちらもお読みください。</p>
-		</section>
+		<h1>新しい質問を投稿</h1>
+		<form id="question-form">
+			<input type="text" id="question-title" placeholder="質問のタイトル" required><br>
+			<textarea id="question-content" placeholder="質問の内容" required></textarea><br>
+			<label for="question-username">ユーザー名:</label>
+			<input type="text" id="question-username" required><br>
+			<button type="submit">投稿する</button>
+		</form>
+
+		<p><a href="question.html">質問一覧に戻る</a></p>
+
 	</main>
-	
+
 	<footer>
-		<p>© 2025 talus</p>
+		<p>&copy; 2025 talus</p>
 		<p>※このサイトは学校非公認の個人が運営しているサイトです。学校側の問題に責任は取れませんのでご注意ください。</p>
-		<p>
-			<a href="https://www.mito1-jh.ibk.ed.jp" target="_blank" rel="noopener noreferrer">茨城県立水戸第一高等学校附属中学校HP</a>
+		<p><a href="https://www.mito1-jh.ibk.ed.jp" target="_blank" rel="noopener noreferrer">茨城県立水戸第一高等学校附属中学校HP</a>
 		</p>
 	</footer>
+
+	<script>
+		const pd = supabase.createClient('https://mgsbwkidyxmicbacqeeh.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1nc2J3a2lkeXhtaWNiYWNxZWVoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk5NDA0MjIsImV4cCI6MjA1NTUxNjQyMn0.fNkFQykD9ezBirtJM_fOB7XEIlGU1ZFoejCgrYObElg');
+
+		async function postQuestion(event) {
+			event.preventDefault();
+
+			const title = document.getElementById('question-title').value;
+			const content = document.getElementById('question-content').value;
+			const username = document.getElementById('question-username').value;
+
+			const { error } = await pd
+				.from('questions')
+				.insert([{ title, content, username, created_at: new Date() }]);
+
+			if (error) {
+				console.error('Error posting question:', error);
+				alert('質問の投稿に失敗しました');
+			} else {
+				alert('質問が投稿されました');
+				window.location.href = "question.html";
+			}
+		}
+
+		document.getElementById('question-form').addEventListener('submit', postQuestion);
+	</script>
 </body>
 
 </html>
