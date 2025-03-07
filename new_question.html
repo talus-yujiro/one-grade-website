@@ -43,27 +43,27 @@
 				<li>
 					<a href="memberlist.html">
 						<i class="fa-solid fa-clipboard-list"></i>名簿
-                    </a>
+					</a>
 				</li>
 				<li>
 					<a href="test.html">
 						<i class="fa-solid fa-calendar-days"></i>テスト予定
-                    </a>
+					</a>
 				</li>
 				<li>
 					<a href="tasks-a.html">
 						<i class="fa-solid fa-list-check"></i>課題(A)
-                    </a>
+					</a>
 				</li>
 				<li>
 					<a href="tasks-b.html">
 						<i class="fa-solid fa-list-check"></i>課題(B)
-                    </a>
+					</a>
 				</li>
 				<li>
 					<a href="bbs.html">
 						<i class="fa-solid fa-chalkboard"></i>掲示板
-                    </a>
+					</a>
 				</li>
 				<li>
 					<a href="classroomNotify.html">
@@ -106,14 +106,34 @@
 	</footer>
 
 	<script>
-		const pd = supabase.createClient('https://mgsbwkidyxmicbacqeeh.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1nc2J3a2lkeXhtaWNiYWNxZWVoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk5NDA0MjIsImV4cCI6MjA1NTUxNjQyMn0.fNkFQykD9ezBirtJM_fOB7XEIlGU1ZFoejCgrYObElg');
+		const pd = supabase.createClient('https://mgsbwkidyxmicbacqeeh.supabase.co', 'PUBLIC_ANON_KEY');
+
+		// 最後の投稿時刻を保存する変数
+		let lastPostTime = localStorage.getItem('lastPostTime') || 0;
 
 		async function postQuestion(event) {
 			event.preventDefault();
 
-			const title = document.getElementById('question-title').value;
-			const content = document.getElementById('question-content').value;
-			const username = document.getElementById('question-username').value;
+			const title = document.getElementById('question-title').value.trim();
+			const content = document.getElementById('question-content').value.trim();
+			const username = document.getElementById('question-username').value.trim();
+
+			// スパム対策: 入力チェック
+			if (!title || !content || !username) {
+				alert('すべてのフィールドを入力してください');
+				return;
+			}
+			if (title.length < 10 || content.length < 20) {
+				alert('タイトルは10文字以上、内容は20文字以上にしてください');
+				return;
+			}
+
+			// スパム対策: 投稿間隔制限（30秒）
+			const now = Date.now();
+			if (now - lastPostTime < 60000) {
+				alert('短時間での連続投稿はできません。少し待ってから再度投稿してください');
+				return;
+			}
 
 			const { error } = await pd
 				.from('questions')
@@ -124,6 +144,7 @@
 				alert('質問の投稿に失敗しました');
 			} else {
 				alert('質問が投稿されました');
+				localStorage.setItem('lastPostTime', now); // 投稿時刻を保存
 				window.location.href = "question.html";
 			}
 		}
