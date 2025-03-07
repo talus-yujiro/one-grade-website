@@ -106,7 +106,7 @@
 	</footer>
 
 	<script>
-		const pd = supabase.createClient('https://mgsbwkidyxmicbacqeeh.supabase.co', 'PUBLIC_ANON_KEY');
+		const pd = supabase.createClient('https://mgsbwkidyxmicbacqeeh.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1nc2J3a2lkeXhtaWNiYWNxZWVoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk5NDA0MjIsImV4cCI6MjA1NTUxNjQyMn0.fNkFQykD9ezBirtJM_fOB7XEIlGU1ZFoejCgrYObElg');
 
 		// 最後の投稿時刻を保存する変数
 		let lastPostTime = localStorage.getItem('lastPostTime') || 0;
@@ -123,8 +123,8 @@
 				alert('すべてのフィールドを入力してください');
 				return;
 			}
-			if (title.length < 10 || content.length < 20) {
-				alert('タイトルは10文字以上、内容は20文字以上にしてください');
+			if (title.length < 8 || content.length < 20) {
+				alert('タイトルは8文字以上、内容は20文字以上にしてください');
 				return;
 			}
 
