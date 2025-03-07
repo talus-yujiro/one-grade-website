@@ -33,6 +33,7 @@
 	<link rel="icon" type="image/png" href="mitoichi-fuzoku-192x192.png" sizes="192x192">
 	<!--CDN-->
 	<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+	<script src="customAlert.js"></script>
 </head>
 
 <body>
@@ -113,6 +114,7 @@
 
 		async function postQuestion(event) {
 			event.preventDefault();
+			event.target.disabled = true;
 
 			const title = document.getElementById('question-title').value.trim();
 			const content = document.getElementById('question-content').value.trim();
@@ -120,18 +122,18 @@
 
 			// スパム対策: 入力チェック
 			if (!title || !content || !username) {
-				alert('すべてのフィールドを入力してください');
+				showCustomAlert('すべてのフィールドを入力してください');
 				return;
 			}
 			if (title.length < 8 || content.length < 20) {
-				alert('タイトルは8文字以上、内容は20文字以上にしてください');
+				showCustomAlert('タイトルは8文字以上、内容は20文字以上にしてください');
 				return;
 			}
 
 			// スパム対策: 投稿間隔制限（30秒）
 			const now = Date.now();
 			if (now - lastPostTime < 60000) {
-				alert('短時間での連続投稿はできません。少し待ってから再度投稿してください');
+				showCustomAlert('短時間での連続投稿はできません。少し待ってから再度投稿してください');
 				return;
 			}
 
@@ -141,12 +143,16 @@
 
 			if (error) {
 				console.error('Error posting question:', error);
-				alert('質問の投稿に失敗しました');
+				showCustomAlert('質問の投稿に失敗しました');
 			} else {
-				alert('質問が投稿されました');
+				showCustomAlert('質問が投稿されました');
 				localStorage.setItem('lastPostTime', now); // 投稿時刻を保存
 				window.location.href = "question.html";
 			}
+
+			setTimeout(() => {
+				event.target.disabled = false;
+			}, 5000);
 		}
 
 		document.getElementById('question-form').addEventListener('submit', postQuestion);

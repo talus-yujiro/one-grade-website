@@ -33,6 +33,7 @@
 	<link rel="icon" type="image/png" href="mitoichi-fuzoku-192x192.png" sizes="192x192">
 	<!--CDN-->
 	<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+	<script src="customAlert.js"></script>
 </head>
 
 <body>
@@ -170,17 +171,18 @@
 
 		document.getElementById('answer-form').addEventListener('submit', async (event) => {
 			event.preventDefault();
+			event.target.disabled = true;
 
 			const content = document.getElementById('answer-content').value.trim();
 			const username = document.getElementById('answer-username').value.trim();
 
 			// スパム対策: 入力チェック
 			if (!content || !username) {
-				alert('すべてのフィールドを入力してください');
+				showCustomAlert('すべてのフィールドを入力してください');
 				return;
 			}
 			if (content.length < 20) {
-				alert('回答は20文字以上にしてください');
+				showCustomAlert('回答は20文字以上にしてください');
 				return;
 			}
 
@@ -188,7 +190,7 @@
 			const lastAnswerTime = localStorage.getItem('lastAnswerTime') || 0;
 			const now = Date.now();
 			if (now - lastAnswerTime < 60000) {
-				alert('短時間での連続投稿はできません。少し待ってから再度投稿してください');
+				showCustomAlert('短時間での連続投稿はできません。少し待ってから再度投稿してください');
 				return;
 			}
 
@@ -199,13 +201,16 @@
 			if (error) {
 				console.error('Error posting answer:', error);
 			} else {
-				alert('回答が投稿されました');
+				showCustomAlert('回答が投稿されました');
 				localStorage.setItem('lastAnswerTime', now); // 投稿時刻を保存
 				markAsAnswered(questionId);
 				fetchAnswers();
 				document.getElementById('answer-content').value = '';
 				document.getElementById('answer-username').value = '';
 			}
+			setTimeout(() => {
+				event.target.disabled = false;
+			}, 5000);
 		});
 
 		async function markAsAnswered(questionId) {
