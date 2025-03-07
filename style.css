@@ -25,6 +25,16 @@ footer {
     border-radius: 10px;
 }
 
+::selection {
+    color: #abc3ff;
+    background: #0732b1;
+}
+
+::-moz-selection {
+    color: #abc3ff;
+    background: #0732b1;
+}
+
 nav {
     width: 100%;
 }
