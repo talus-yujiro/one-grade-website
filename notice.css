@@ -57,3 +57,10 @@
     right: 250px;
     /* メニューが開いた時、ボタンも左に動く */
 }
+
+@media (max-width: 428px) {
+    #menuButton {
+        top: 0;
+        right: 0;
+    }
+}
