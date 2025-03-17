@@ -12,7 +12,7 @@ const names = [
 const verificationKey = "verification";
 
 function checkVerification() {
-    const verified = localStorage.getItem(verificationKey);
+    const verified = localStorage.getItem(verificationKey) === "true" ? true : false;
 
     if (verified) return;
 
@@ -36,7 +36,7 @@ function checkVerification() {
     messageHead.innerText = "認証"
 
     const messageElem = document.createElement("p");
-    messageElem.innerText = "プライバシーの面から名前の入力をお願いします\n入力は一度限りです";
+    messageElem.innerText = "プライバシーの面から名前の入力をお願いします\n一度入力した場合は、もう一度入力してもらい、連絡していただけると助かります。\nなお、違う端末で開いた場合は再度入力になることがあります";
     messageElem.style.marginBottom = "15px";
 
     const nameBox = document.createElement("input");
@@ -54,6 +54,7 @@ function checkVerification() {
         alertContainer.style.opacity = "0";
         const clientName = nameBox.value;
         const isValid = names.includes(clientName);
+        localStorage.removeItem(verificationKey);
         localStorage.setItem(verificationKey, isValid);
         setTimeout(() => alertBackground.remove(), 500);
         let clientUrl = window.location.pathname;
