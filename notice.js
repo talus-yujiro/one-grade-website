@@ -74,15 +74,16 @@ document.addEventListener("DOMContentLoaded", () => {
             dateHeader.textContent = date;
             noticeGroup.appendChild(dateHeader);
 
+            const noticeItem = document.createElement('ul');
+            noticeItem.classList.add('notice-item');
+
             dateGroup.forEach(item => {
-                const noticeItem = document.createElement('div');
-                noticeItem.classList.add('notice-item');
-                noticeItem.innerHTML = `
+                noticeItem.innerHTML += `
                     <li>${item.content}</li>
                 `;
-                noticeGroup.appendChild(noticeItem);
             });
-
+            
+            noticeGroup.appendChild(noticeItem);
             noticeContainer.appendChild(noticeGroup);
         });
     }

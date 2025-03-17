@@ -60,6 +60,11 @@
     /* メニューが開いた時、ボタンも左に動く */
 }
 
+.notice-item {
+    margin: 0;
+    margin-block-start: 0;
+}
+
 @media (max-width: 428px) {
     #menuButton {
         top: 0;

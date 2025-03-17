@@ -1,6 +1,7 @@
 @font-face {
     font-family: 'Neue Haas Display';
     src: url(fonts/NeueHaasDisplayRoman.ttf);
+    font-display: swap;
 }
 
 * {
