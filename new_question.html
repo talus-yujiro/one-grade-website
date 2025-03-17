@@ -93,6 +93,8 @@
 			<textarea id="question-content" placeholder="質問の内容" required></textarea><br>
 			<label for="question-username">ユーザー名:</label>
 			<input type="text" id="question-username" required><br>
+			<input type="checkbox" id="faster">
+			<label for="faster">至急求む</label><br>
 			<button type="submit">投稿する</button>
 		</form>
 
@@ -123,6 +125,7 @@
 			const title = document.getElementById('question-title').value.trim();
 			const content = document.getElementById('question-content').value.trim();
 			const username = document.getElementById('question-username').value.trim();
+			const faster = document.getElementById('faster').value
 
 			// スパム対策: 入力チェック
 			if (!title || !content || !username) {
@@ -143,7 +146,7 @@
 
 			const { error } = await pd
 				.from('questions')
-				.insert([{ title, content, username, created_at: new Date() }]);
+				.insert([{ title, content, username, faster, created_at: new Date() }]);
 
 			if (error) {
 				console.error('Error posting question:', error);
@@ -162,6 +165,8 @@
 		document.getElementById('question-form').addEventListener('submit', postQuestion);
 	</script>
     <script type="module" src="notice.js"></script>
+	<script src="customAlert.js"></script>
+	<script src="verification.js"></script>
 </body>
 
 </html>

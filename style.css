@@ -197,6 +197,10 @@ button:active {
     background-color: #0732b1;
 }
 
+.faster {
+    color: #b64300;
+}
+
 /* タブレット対応 */
 @media (max-width: 960px) {
 

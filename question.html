@@ -145,6 +145,10 @@
                 li.innerHTML = `<a href="details.html?id=${q.id}">${q.title}</a>
                 <small>- ${q.username} (${answerDate})</small>`;
     
+                if(q.faster) {
+                    li.innerHTML += ` <small class="faster">至急求む!!!</small>`
+                }
+
                 if (q.answered) {
                     answeredList.appendChild(li);
                 } else {
@@ -174,6 +178,8 @@
         fetchQuestions();
     </script>
     <script type="module" src="notice.js"></script>
+    <script src="customAlert.js"></script>
+	<script src="verification.js"></script>
 </body>
 
 </html>

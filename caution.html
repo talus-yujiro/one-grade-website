@@ -5,7 +5,7 @@
 	<!--文字コード・互換モード-->
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge, chrome=1">
-	<title>課題(B) | R6年度1学年総合ウェブサイト</title>
+	<title>?? | R6年度1学年総合ウェブサイト</title>
 	<!--ビューポート-->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!--css-->
@@ -80,52 +80,15 @@
 			</ul>
 		</nav>
         <p class="header__breadcrumb">
-            <a href="index.html"><i class="fa-solid fa-house"></i>トップページ</a>
-            <a href="memberlist.html" ><i class="fa-solid fa-list-check"></i>課題(B)</a>
+            <a href="caution.html">警告</a>
         </p>
     </header>
 
     <main>
-        <h1>課題(B)</h1>
-        <article>
-            <p>現在B組で出されている課題の一覧です。</p>
-            <p>サイトを観覧できる人が投稿できるようになっているので、課題ができたりしたらどんどん投稿してください。</p>
-            <p>ただし、以下の注意をよく読んでからにしてください。</p>
-        </article>
-
-        <article>
-            <h2>課題を追加する際の注意</h2>
-            <p>できるだけ正しい情報を入力することにご協力ください。</p>
-            <p>もし正しくない情報や適切でない情報だった場合は削除させていただくことがありますのでご了承ください。</p>
-        </article>
-
-        <article>
-            <h2>課題を追加</h2>
-            <form id="taskForm">
-                <input type="text" id="title" placeholder="課題名" required><br>
-                <input type="date" id="deadline" required><br>
-                <input type="text" id="description" placeholder="課題内容" required><br>
-                <input type="text" id="notes" placeholder="備考"><br>
-                <button type="submit">追加</button>
-            </form>
-        </article>
-
-        <article>
-            <h2>課題一覧</h2>
-            <div class="tableContainer">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>課題名</th>
-                            <th>期限</th>
-                            <th>課題内容</th>
-                            <th>備考</th>
-                        </tr>
-                    </thead>
-                    <tbody id="taskTable"></tbody>
-                </table>
-            </div>
-        </article>
+        <h1>警告</h1>
+        <p>このサイトは水戸一高附属中生専用サイトです。</p>
+        <p>外部の方は利用できません。</p>
+        <p>もし附属中生なのにこの画面が表示された場合は、<a href="https://mail.google.com/mail/?view=cm&to=yamamoto.yuujirou@mito1-h.ibk.ed.jp&su=サイトに入れない" target="_blank" rel="noopener noreferrer">yamamoto.yuujirou@mito1-h.ibk.ed.jp</a>まで名前と一緒に連絡ください。</p>
     </main>
 
     <footer>
@@ -134,11 +97,7 @@
         <p><a href="https://www.mito1-jh.ibk.ed.jp" target="_blank" rel="noopener noreferrer">茨城県立水戸第一高等学校附属中学校HP</a></p>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.35.4"></script>
-    <script type="module" src="tasks-b.js"></script>
-    <script type="module" src="notice.js"></script>
-    <script src="customAlert.js"></script>
-	<script src="verification.js"></script>
+	<script type="module" src="notice.js"></script>
 </body>
 
 </html>
