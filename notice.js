@@ -24,19 +24,17 @@ document.addEventListener("DOMContentLoaded", () => {
         menuButton.classList.toggle("open");
     });
 
-    
     // Supabase設定
     const supabaseUrl = "https://mgsbwkidyxmicbacqeeh.supabase.co";
     const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1nc2J3a2lkeXhtaWNiYWNxZWVoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk5NDA0MjIsImV4cCI6MjA1NTUxNjQyMn0.fNkFQykD9ezBirtJM_fOB7XEIlGU1ZFoejCgrYObElg";
     const pd = createClient(supabaseUrl, supabaseKey);
-    
 
     let h1Content = '';
 
-    let query = pd.from('notice').select('id, date, content, page').order('date', { ascending: false});
+    let query = pd.from('notice').select('id, date, content, page').order('date', { ascending: false });
 
     // 2つ目のh1タグを取得
-    if(document.querySelectorAll('h1')[1]) {
+    if (document.querySelectorAll('h1')[1]) {
         h1Content = document.querySelectorAll('h1')[1].textContent;
         document.getElementById('client-page').textContent = h1Content;
         query = query.eq('page', h1Content);
@@ -56,16 +54,38 @@ document.addEventListener("DOMContentLoaded", () => {
         const noticeContainer = document.getElementById('notice-container');
         noticeContainer.innerHTML = ''; // 既存の内容をクリア
 
-        data.forEach(item => {
-            const noticeItem = document.createElement('div');
-            noticeItem.classList.add('notice-item');
+        // 日付ごとにグループ化
+        const groupedNotices = data.reduce((acc, item) => {
+            const date = item.date; // 日付でグループ化
+            if (!acc[date]) {
+                acc[date] = [];
+            }
+            acc[date].push(item);
+            return acc;
+        }, {});
 
-            noticeItem.innerHTML = `
-          <p>${item.date} ${item.content}</p>
-          `;
+        // グループ化したお知らせを表示
+        Object.keys(groupedNotices).forEach(date => {
+            const dateGroup = groupedNotices[date];
+            const noticeGroup = document.createElement('div');
+            noticeGroup.classList.add('notice-group');
 
-            noticeContainer.appendChild(noticeItem);
+            const dateHeader = document.createElement('h4');
+            dateHeader.textContent = date;
+            noticeGroup.appendChild(dateHeader);
+
+            dateGroup.forEach(item => {
+                const noticeItem = document.createElement('div');
+                noticeItem.classList.add('notice-item');
+                noticeItem.innerHTML = `
+                    <li>${item.content}</li>
+                `;
+                noticeGroup.appendChild(noticeItem);
+            });
+
+            noticeContainer.appendChild(noticeGroup);
         });
     }
-    window.onload = loadNotice();
+
+    window.onload = loadNotice;
 });

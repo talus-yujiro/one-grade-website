@@ -90,6 +90,12 @@
         <p>自分が勉強などのことで困っていることを他の人に質問できます。</p>
         <p>※プライベートな質問は個人でしてください。</p>
         <a href="new_question.html">新しい質問を投稿する</a>
+
+        <!-- 検索フォーム -->
+        <hr>
+        <label for="search-box">検索：<input type="text" id="search-box" placeholder="質問を検索..."></label>
+        <button id="search-btn">検索</button>
+
         <h2>未回答の質問</h2>
         <ul id="unanswered-list"></ul>
 
@@ -105,33 +111,40 @@
     </footer>
 
     <script type="module">
-        // Supabase ライブラリをインポート
         import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
-
+    
         const pd = createClient('https://mgsbwkidyxmicbacqeeh.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1nc2J3a2lkeXhtaWNiYWNxZWVoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzk5NDA0MjIsImV4cCI6MjA1NTUxNjQyMn0.fNkFQykD9ezBirtJM_fOB7XEIlGU1ZFoejCgrYObElg');
-
+    
+        let allQuestions = []; // 取得した質問データを保存
+    
         async function fetchQuestions() {
             const { data: questions, error } = await pd
                 .from('questions')
-                .select('*');
-
+                .select('*')
+                .order('created_at', { ascending: false });
+    
             if (error) {
                 console.error('Error fetching questions:', error);
                 return;
             }
-
+    
+            allQuestions = questions; // データを保存
+            displayQuestions(allQuestions); // 初回表示
+        }
+    
+        function displayQuestions(questions) {
             const unansweredList = document.getElementById("unanswered-list");
             const answeredList = document.getElementById("answered-list");
-
+    
             unansweredList.innerHTML = "";
             answeredList.innerHTML = "";
-
+    
             questions.forEach(q => {
                 const li = document.createElement("li");
                 const answerDate = new Date(q.created_at).toLocaleString();
                 li.innerHTML = `<a href="details.html?id=${q.id}">${q.title}</a>
                 <small>- ${q.username} (${answerDate})</small>`;
-
+    
                 if (q.answered) {
                     answeredList.appendChild(li);
                 } else {
@@ -139,7 +152,25 @@
                 }
             });
         }
-
+    
+        function filterQuestions() {
+            const keyword = document.getElementById("search-box").value.toLowerCase();
+            const filtered = allQuestions.filter(q =>
+                q.title.toLowerCase().includes(keyword) || q.username.toLowerCase().includes(keyword)
+            );
+            displayQuestions(filtered);
+        }
+    
+        // 検索ボタンのクリックで検索実行
+        document.getElementById("search-btn").addEventListener("click", filterQuestions);
+    
+        // Enterキーでも検索できるようにする
+        document.getElementById("search-box").addEventListener("keypress", (event) => {
+            if (event.key === "Enter") {
+                filterQuestions();
+            }
+        });
+    
         fetchQuestions();
     </script>
     <script type="module" src="notice.js"></script>
