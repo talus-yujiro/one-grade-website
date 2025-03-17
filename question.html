@@ -145,13 +145,13 @@
                 li.innerHTML = `<a href="details.html?id=${q.id}">${q.title}</a>
                 <small>- ${q.username} (${answerDate})</small>`;
     
-                if(q.faster) {
-                    li.innerHTML += ` <small class="faster">至急求む!!!</small>`
-                }
-
                 if (q.answered) {
                     answeredList.appendChild(li);
                 } else {
+                    if(q.faster) {
+                        li.innerHTML += ` <small class="faster">至急求む!!!</small>`
+                    }
+
                     unansweredList.appendChild(li);
                 }
             });
