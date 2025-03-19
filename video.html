@@ -92,7 +92,8 @@
     </header>
 
     <main>
-        <span id="h1"></span>
+        <h1>リクエスト曲一覧</h1>
+        <span id="h2"></span>
         <div id="videoContainer"></div>
     </main>
 
@@ -139,7 +140,7 @@
 
         document.getElementById("page-title").textContent = `${video} - リクエスト曲 | R6年度1学年総合ウェブサイト`;
         document.getElementById("musicDate").innerHTML = `<a href="video.html?date=${video}"><i class="fa-solid fa-calendar-days"></i>${video}</a>`;
-        document.getElementById("h1").innerHTML = `<h1>${video}</h1>`;
+        document.getElementById("h2").innerHTML = `<h2>${video}</h2>`;
         document.getElementById("videoContainer").innerHTML = `<iframe src="${url}"></iframe>`;
     </script>
 </body>
