@@ -1,4 +1,4 @@
-function showCustomAlert(message) {
+function showCustomAlert(message, button, timeout) {
     const existingAlert = document.getElementById("custom-alert");
     if (existingAlert) existingAlert.remove();
 
@@ -27,21 +27,31 @@ function showCustomAlert(message) {
     messageElem.style.marginBottom = "15px";
 
     // OKボタン作成
-    const closeButton = document.createElement("button");
-    Object.assign(closeButton.style, {
-        padding: "5px 15px",
-        cursor: "pointer",
-        border: "1px solid #00134c",
-        background: "#5787ff",
-        color: "#00134c",
-        borderRadius: "5px",
-        boxShadow: "0px 0px 5px 1px rgba(0, 0, 0, 0.6)"
-    });
-    closeButton.innerText = "OK";
-    closeButton.onclick = () => {
-        alertContainer.style.opacity = "0";
-        setTimeout(() => alertContainer.remove(), 500);
-    };
+    if (button) {
+        const closeButton = document.createElement("button");
+        Object.assign(closeButton.style, {
+            padding: "5px 15px",
+            cursor: "pointer",
+            border: "1px solid #00134c",
+            background: "#5787ff",
+            color: "#00134c",
+            borderRadius: "5px",
+            boxShadow: "0px 0px 5px 1px rgba(0, 0, 0, 0.6)"
+        });
+        closeButton.innerText = "OK";
+        closeButton.onclick = () => {
+            alertContainer.style.opacity = "0";
+            setTimeout(() => alertContainer.remove(), 500);
+        };
+    } else {
+        // タイムアウトが指定されている場合、指定時間後に自動で閉じる
+        if (timeout) {
+            setTimeout(() => {
+                alertContainer.style.opacity = "0";
+                setTimeout(() => alertContainer.remove(), 500);
+            }, timeout);
+        }
+    }
 
     // 要素を組み立てて追加
     alertContainer.append(messageElem, closeButton);
