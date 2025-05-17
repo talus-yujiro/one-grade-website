@@ -1,5 +1,11 @@
+@font-face {
+    font-family: 'Neue Haas Display';
+    src: url(fonts/NeueHaasDisplayRoman.ttf);
+    font-display: swap;
+}
+
 * {
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: 'Neue Haas Display', Helvetica, Arial, sans-serif;
     box-sizing: border-box;
 }
 
@@ -20,6 +26,16 @@ footer {
     border-radius: 10px;
 }
 
+::selection {
+    color: #abc3ff;
+    background: #0732b1;
+}
+
+::-moz-selection {
+    color: #abc3ff;
+    background: #0732b1;
+}
+
 nav {
     width: 100%;
 }
@@ -35,11 +51,12 @@ nav ul {
     justify-content: space-around;
     list-style: none;
     gap: 0.5rem;
+    flex-wrap: wrap;
 }
 
 nav li {
     flex-grow: 1;
-    width: calc(100% / 5);
+    width: calc(100% / 4 - 2rem);
     margin: 0.5rem;
 }
 
@@ -67,8 +84,13 @@ nav a:hover i {
     color: #fff;
 }
 
+.header__breadcrumb a {
+    white-space: nowrap;
+}
+
 .header__breadcrumb a::after {
     content: ' / ';
+    margin: 0 0.5rem;
 }
 
 i {
@@ -95,6 +117,12 @@ a[href^="//"]:after {
     margin-left: 3px;
     font: var(--fa-font-solid);
     content: '\f08e';
+}
+
+.new::after {
+    content: 'new!';
+    color: #b64300;
+    margin-left: 1rem;
 }
 
 .tableContainer {
@@ -170,6 +198,10 @@ button {
 button:active {
     color: #abc3ff;
     background-color: #0732b1;
+}
+
+.faster {
+    color: #b64300;
 }
 
 /* タブレット対応 */

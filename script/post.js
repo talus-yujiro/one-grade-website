@@ -46,7 +46,7 @@ document.getElementById("postForm").addEventListener("submit", async (e) => {
     const content = document.getElementById("content").value;
 
     if (!thread) {
-        alert("スレッドを選択してください！");
+        showCustomAlert("スレッドを選択してください！");
         return;
     }
 
@@ -56,6 +56,6 @@ document.getElementById("postForm").addEventListener("submit", async (e) => {
         return;
     }
 
-    alert("投稿完了！");
+    showCustomAlert("投稿完了！");
     window.location.href = `bbs.html?thread=${thread}`;
 });

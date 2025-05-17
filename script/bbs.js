@@ -17,7 +17,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     const { data: threads, error: threadError } = await supabase
         .from("BBS")
         .select("thread")
-        .order("thread", { ascending: true });
+        .limit(10)
+        .order('created_at', { ascending: false }); 
 
     if (threadError) {
         console.error("スレッド取得エラー:", threadError);
@@ -28,7 +29,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const uniqueThreads = [...new Set(threads.map(t => t.thread))];
 
     // プルダウンメニューの作成
-    threadDropdown.innerHTML += uniqueThreads.map(t => 
+    threadDropdown.innerHTML += uniqueThreads.map(t =>
         `<option value="${t}" ${thread === t ? "selected" : ""}>${t}</option>`
     ).join("");
 

@@ -5,7 +5,7 @@
 	<!--文字コード・互換モード-->
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge, chrome=1">
-	<title>?? | R6年度1学年総合ウェブサイト</title>
+	<title>クラスルームからのお知らせ | R6年度1学年総合ウェブサイト</title>
 	<!--ビューポート-->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!--css-->
@@ -35,6 +35,8 @@
     <!--CDN-->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.35.4"></script>
     <script src="customAlert.js"></script>
+    <!--リダイレクト-->
+    <meta http-equiv="refresh" content="0; url=https://talus-yujiro.github.io/two-grade-website/classroom_notify/">
 </head>
 
 <body>
@@ -81,12 +83,23 @@
         </nav>
         <p class="header__breadcrumb">
             <a href="index.html"><i class="fa-solid fa-house"></i>トップページ</a>
-            <a href="memberlist.html" >??</a>
+            <a href="classroomNotify.html" ><i class="fa-solid fa-list-check"></i>クラスルームからのお知らせ</a>
         </p>
     </header>
 
     <main>
+        <h1>クラスルームからのお知らせ</h1>
+        <section>
+            <p>クラスルームの最新のお知らせ一覧です。</p>
+            <p>※更新は一分毎くらいです。</p>
+            <p>なお、管理人がB組なので一部B組のお知らせがあります。A組の方は注意してください。</p>
+        </section>
 
+        <article>
+            <h2>お知らせ一覧</h2>
+            <div id="notifyContainer">
+            </div>
+        </article>
     </main>
 
     <footer>
@@ -95,7 +108,9 @@
         <p><a href="https://www.mito1-jh.ibk.ed.jp" target="_blank" rel="noopener noreferrer">茨城県立水戸第一高等学校附属中学校HP</a></p>
     </footer>
 
-	<script type="module" src="notice.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.35.4"></script>
+    <script type="module" src="classroomNotify.js"></script>
+    <script type="module" src="notice.js"></script>
     <script src="customAlert.js"></script>
 	<script src="verification.js"></script>
 </body>

@@ -2,6 +2,7 @@
 <html lang="ja">
 
 <head>
+<<<<<<< HEAD
     <!--文字コード・互換モード-->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge, chrome=1">
@@ -11,6 +12,18 @@
     <!--css-->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.2/css/all.css">
+=======
+	<!--文字コード・互換モード-->
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge, chrome=1">
+	<title>課題(B) | R6年度1学年総合ウェブサイト</title>
+	<!--ビューポート-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--css-->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.2/css/all.css">
+    <link rel="stylesheet" href="notice.css">
+>>>>>>> d6dc2d08d6fa3801933898b590fd96be923cb07a
     <!--web情報-->
     <meta name="keywords" content="水戸一, 水戸一附属, 水戸一附属中, 一学年,">
     <meta name="description" content="水戸一附属中四期生向けの総合ウェブサイトです。附属中向けのテストの情報などを配信しています。">
@@ -31,6 +44,14 @@
     <!--Android-->
     <meta name="theme-color" content="#5787ff">
     <link rel="icon" type="image/png" href="mitoichi-fuzoku-192x192.png" sizes="192x192">
+<<<<<<< HEAD
+=======
+    <!--CDN-->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.35.4"></script>
+    <script src="customAlert.js"></script>
+    <!--リダイレクト-->
+    <meta http-equiv="refresh" content="0; url=https://talus-yujiro.github.io/two-grade-website/tasks_b/">
+>>>>>>> d6dc2d08d6fa3801933898b590fd96be923cb07a
 </head>
 
 <body>
@@ -38,11 +59,46 @@
         <h1><a href="index.html">R6年度1学年総合ウェブサイト</a></h1>
         <nav>
             <ul>
-                <li><a href="memberlist.html"><i class="fa-solid fa-clipboard-list"></i>名簿</a></li>
-                <li><a href="test.html"><i class="fa-solid fa-calendar-days"></i>テスト予定</a></li>
-                <li><a href="tasks-a.html"><i class="fa-solid fa-list-check"></i>課題(A)</a></li>
-                <li><a href="tasks-b.html"><i class="fa-solid fa-list-check"></i>課題(B)</a></li>
-                <li><a href="bbs.html"><i class="fa-solid fa-chalkboard"></i>掲示板</a></li>
+                <li>
+                    <a href="memberlist.html">
+                        <i class="fa-solid fa-clipboard-list"></i>名簿
+                    </a>
+                </li>
+                <li>
+                    <a href="test.html">
+                        <i class="fa-solid fa-calendar-days"></i>テスト予定
+                    </a>
+                </li>
+                <li>
+                    <a href="tasks-a.html">
+                        <i class="fa-solid fa-list-check"></i>課題(A)
+                    </a>
+                </li>
+                <li>
+                    <a href="tasks-b.html">
+                        <i class="fa-solid fa-list-check"></i>課題(B)
+                    </a>
+                </li>
+                <li>
+                    <a href="bbs.html">
+                        <i class="fa-solid fa-chalkboard"></i>掲示板
+                    </a>
+                </li>
+                <li>
+                    <a href="classroomNotify.html">
+                        <i class="fa-solid fa-circle-info"></i>お知らせ
+                    </a>
+                </li>
+                <li>
+                    <a href="question.html">
+                        <i class="fa-solid fa-circle-question"></i>質問箱
+                    </a>
+                </li>
+                <li>
+                    <a href="request_music.html">
+                        <i class="fa-solid fa-music"></i>リクエスト曲
+                    </a>
+                </li>
             </ul>
         </nav>
         <p class="header__breadcrumb">
@@ -78,17 +134,19 @@
 
         <article>
             <h2>課題一覧</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>課題名</th>
-                        <th>期限</th>
-                        <th>課題内容</th>
-                        <th>備考</th>
-                    </tr>
-                </thead>
-                <tbody id="taskTable"></tbody>
-            </table>
+            <div class="tableContainer">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>課題名</th>
+                            <th>期限</th>
+                            <th>課題内容</th>
+                            <th>備考</th>
+                        </tr>
+                    </thead>
+                    <tbody id="taskTable"></tbody>
+                </table>
+            </div>
         </article>
     </main>
 
@@ -100,7 +158,14 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.35.4"></script>
+<<<<<<< HEAD
     <script type="module" src="script/tasks-b.js"></script>
+=======
+    <script type="module" src="tasks-b.js"></script>
+    <script type="module" src="notice.js"></script>
+    <script src="customAlert.js"></script>
+	<script src="verification.js"></script>
+>>>>>>> d6dc2d08d6fa3801933898b590fd96be923cb07a
 </body>
 
 </html>
